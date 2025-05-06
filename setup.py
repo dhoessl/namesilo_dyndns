@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='namesilo_dyndns',
-    version='0.1-1',
+    version='0.1-2',
     description='A Tool to set up a dyndns using the namesilo python api',
     url='https://github.com/dhoessl/namesilo_dyndns',
     author="Dominic Hößl",
