@@ -13,10 +13,6 @@ setup(
         "requests",
         "logging",
         "PyYAML",
-        "python_namesilo_api"
-    ],
-    dependency_links=[
-        "git+https://github.com/dhoessl/python_namesilo_api"
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

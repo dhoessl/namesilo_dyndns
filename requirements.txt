@@ -1,4 +1,1 @@
-requests
-logging
-PyYAML
-git+https://github.com/dhoessl/python_namesilo_api.git
+git+https://github.com/dhoessl/python_namesilo_api
