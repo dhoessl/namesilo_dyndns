@@ -13,9 +13,9 @@ setup(
         "requests",
         "logging",
         "PyYAML",
-        "namesilo_api"
+        "python_namesilo_api"
     ],
-    dependency_links = [
+    dependency_links=[
         "git+https://github.com/dhoessl/python_namesilo_api"
     ],
     classifiers=[
