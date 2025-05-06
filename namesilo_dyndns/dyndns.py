@@ -50,7 +50,7 @@ class NamesiloDyndns:
                     my_ip,
                     domain_config["subdomain"]
                 )
-            my_ip = self.get_my_ip(self.config["ipv6_server"]),
+            my_ip = self.get_my_ip(self.config["ipv6_server"])
             if domain_config["ipv6"] and my_ip:
                 self.set_record(
                     domain_obj,
@@ -72,22 +72,29 @@ class NamesiloDyndns:
             try:
                 old_ip = record.value
                 domain_obj.update_record_by_id(record.id, value=ip, ttl=3600)
-                self.logger.info(f"{domain_obj.domain} | {old_ip} -> {ip}")
+                self.logger.info(
+                    f"{subdomain}.{domain_obj.domain} | {old_ip} -> {ip}"
+                )
             except NamesiloAPIReturnError:
                 self.logger.error(
-                    "Some API error occured while updating {domain_obj.domain}"
+                    "Some API error occured while updating "
+                    f"{subdomain}.{domain_obj.domain}"
                 )
         elif not record:
             try:
                 domain_obj.create_record(subdomain, rtype, ip, ttl=3600)
-                self.logger.info(f"{domain_obj.domain} | None -> {ip}")
+                self.logger.info(
+                    f"{subdomain}.{domain_obj.domain} | None -> {ip}"
+                )
             except NamesiloAPIReturnError:
                 self.logger.error(
-                    "Some API error occured while updating {domain_obj.domain}"
+                    "Some API error occured while updating "
+                    f"{subdomain}.{domain_obj.domain}"
                 )
         else:
             self.logger.info(
-                f"{domain_obj.domain} checked - {record.value} still correct"
+                f"{subdomain}.{domain_obj.domain} checked - "
+                f"{record.value} still correct"
             )
 
     def get_config(self) -> dict:
