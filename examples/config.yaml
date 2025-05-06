@@ -1,0 +1,12 @@
+---
+domains:
+  example.com:
+    key: "YouWish"
+    ipv4: true
+    ipv6: true
+    subdomain: "test"
+key: "YouWishITellYou"
+ipv4_server: "https://ip.dhoessl.de"
+ipv6_server: "https://ipv6.dhoessl.de"
+verbose: true
+...
