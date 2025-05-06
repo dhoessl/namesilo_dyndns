@@ -16,9 +16,18 @@ pip install -r https://raw.githubusercontent.com/dhoessl/namesilo_dyndns/refs/he
 pip install -U git+https://github.com/dhoessl/namesilo_dyndns
 ```
 
+If the active user is not root you need to create the logfile and change owner to the running user.
+
+```
+sudo touch /var/log/dyndns.log
+sudo chown $USER:root /var/log/dyndns.log
+```
+
 # Usage
 
 `python3 -m namesilo_dyndns`
+
+This command can be shot using cron or a systemd timer.
 
 # Customize
 
