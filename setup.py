@@ -17,7 +17,7 @@ setup(
     ],
     dependency_links = [
         "git+https://github.com/dhoessl/python_namesilo_api"
-    ]
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
