@@ -45,14 +45,14 @@ class NamesiloDyndns:
                 self.set_record(
                     domain_obj,
                     "A",
-                    self.get_my_ip(self.config["ipv4_server"]).json()["ip"],
+                    self.get_my_ip(self.config["ipv4_server"]),
                     domain_config["subdomain"]
                 )
             if domain_config["ipv6"]:
                 self.set_record(
                     domain_obj,
                     "AAAA",
-                    self.get_my_ip(self.config["ipv6_server"]).json()["ip"],
+                    self.get_my_ip(self.config["ipv6_server"]),
                     domain_config["subdomain"]
                 )
         self.logger.info("Finished DNS update")
@@ -66,22 +66,22 @@ class NamesiloDyndns:
             try:
                 old_ip = record.value
                 domain_obj.update_record_by_id(record.id, value=ip, ttl=3600)
-                self.logger.info(f"{record.domain} | {old_ip} -> {ip}")
+                self.logger.info(f"{domain_obj.domain} | {old_ip} -> {ip}")
             except NamesiloAPIReturnError:
                 self.logger.error(
-                    "Some API error occured while updating {record.domain}"
+                    "Some API error occured while updating {domain_obj.domain}"
                 )
         elif not record:
             try:
                 domain_obj.create_record(subdomain, rtype, ip, ttl=3600)
-                self.logger.info(f"{record.domain} | None -> {ip}")
+                self.logger.info(f"{domain_obj.domain} | None -> {ip}")
             except NamesiloAPIReturnError:
                 self.logger.error(
-                    "Some API error occured while updating {record.domain}"
+                    "Some API error occured while updating {domain_obj.domain}"
                 )
         else:
             self.logger.info(
-                f"{record.domain} checked - {record.value} still correct"
+                f"{domain_obj.domain} checked - {record.value} still correct"
             )
 
     def get_config(self) -> dict:
@@ -102,7 +102,7 @@ class NamesiloDyndns:
             config = safe_load(yamlfile)
         return config
 
-    def check_config(self, config: dict) -> dict:
+    def check_config(self) -> dict:
         if "key" not in self.config:
             self.logger.error("Please specify your API key in the config")
             exit(1)
