@@ -1,5 +1,5 @@
-from .dyndns import NamsiloDyndns
+from .dyndns import NamesiloDyndns
 
 if __name__ == "__main__":
-    app = NamsiloDyndns()
+    app = NamesiloDyndns()
     app.run()

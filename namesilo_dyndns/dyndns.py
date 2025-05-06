@@ -2,6 +2,7 @@
 
 from errno import ENOENT
 from requests import get
+from requests.exceptions import ConnectionError
 from yaml import safe_load
 from os import path, strerror
 from namesilo_api import Domain, NamesiloAPIReturnError, RecordValueError
@@ -41,24 +42,29 @@ class NamesiloDyndns:
                     + msg
                 )
                 exit(1)
-            if domain_config["ipv4"]:
+            my_ip = self.get_my_ip(self.config["ipv4_server"])
+            if domain_config["ipv4"] and my_ip:
                 self.set_record(
                     domain_obj,
                     "A",
-                    self.get_my_ip(self.config["ipv4_server"]),
+                    my_ip,
                     domain_config["subdomain"]
                 )
-            if domain_config["ipv6"]:
+            my_ip = self.get_my_ip(self.config["ipv6_server"]),
+            if domain_config["ipv6"] and my_ip:
                 self.set_record(
                     domain_obj,
                     "AAAA",
-                    self.get_my_ip(self.config["ipv6_server"]),
+                    my_ip,
                     domain_config["subdomain"]
                 )
         self.logger.info("Finished DNS update")
 
     def get_my_ip(self, server) -> str:
-        return get(server).json()["ip"]
+        try:
+            return get(server).json()["ip"]
+        except ConnectionError:
+            return None
 
     def set_record(self, domain_obj, rtype, ip, subdomain) -> None:
         record = domain_obj.get_host(subdomain, rtype)
