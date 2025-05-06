@@ -11,8 +11,10 @@ If the file is not found a `FileNotFoundError` is raised.
 Example config can be found in the example folder.
 
 # Install
-`pip install -r https://github.com/dhoessl/namesilo_dyndns/blob/master/requirements.txt`
-`pip install -U git+https://github.com/dhoessl/namesilo_dyndns`
+```
+pip install -r https://raw.githubusercontent.com/dhoessl/namesilo_dyndns/refs/heads/master/requirements.txt
+pip install -U git+https://github.com/dhoessl/namesilo_dyndns
+```
 
 # Usage
 
