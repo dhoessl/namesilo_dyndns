@@ -1,3 +1,4 @@
+# ATTENTION: Deprecation in favor of [namesilo-py](https://github.com/dhoessl/namesilo-py)
 # Namesilo DynDns Service
 
 This tool acts as DynDns Service using [Namesilo API](https://github.com/dhoessl/python_namesilo_api).
